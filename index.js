@@ -1,28 +1,23 @@
 const express = require('express');
 const cors = require('cors');
-
-const {
-    errorHandler,
-    boomErrorHandler
-} = require('./middleware/error');
+const app = express();
 
 const { config } = require('./config/config');
 const routerApi = require('./routes/index');
-const app = express();
+const { errorHandler } = require('./middleware/error');
 
-/////////////////////////////////////////////////////////////////////////////////
-
-app.use(express.json());
+// middleware
 app.use(cors());
+app.use(express.json());
 
-/////////////////////////////////////////////////////////////////////////////////
-
+// router
 routerApi(app);
+
+// error middleware
+app.use( errorHandler );
 
 app.get('*', (req, res) => {
     res.sendStatus(404);
 });
-
-app.use(boomErrorHandler, errorHandler);
 
 app.listen(config.port, console.log(`SERVER ON PORT ${config.port}`));

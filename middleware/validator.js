@@ -1,5 +1,3 @@
-const boom = require('@hapi/boom');
-
 /**
  * @description valida la data obtenida desde el payload
  * @param {*} schema esquema a usar para la validación
@@ -12,7 +10,7 @@ function validatorHandler(schema, property){
         const { error } = schema.validate(data, { abortEarly: false });
 
         if (error) {
-            next(boom.badRequest(error));
+            next( error );
         }
 
         next();
