@@ -27,7 +27,7 @@ Asumiendo que estamos en localhost, puerto 3000:
 
 ### Obtener todos los empleados (GET)
 
-Puede obtener todos los empleados si consulata la ruta:
+Puede obtener todos los empleados si consulta la ruta:
 
 ```
 http://localhost:3000/
